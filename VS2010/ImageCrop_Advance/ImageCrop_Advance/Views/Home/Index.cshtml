@@ -1,0 +1,143 @@
+﻿@model IEnumerable<ImageCrop.Models.UploadImage2>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ASP.NET MVC 3 + jQuery imgAreaSelect + fancyBox</h2>
+<p>
+    <a id="HyperLink_Reload" style="cursor: pointer; color: Blue;">Reload</a> | 
+    @Html.ActionLink("Upload File", "UploadFile", "Home", new { @class = "various fancybox.iframe" })
+</p>
+<table style="border-width: 1px; border-style: solid; padding: 5px; width: 90%;">
+    <tr style="background-color: #eeeeee; height: 30px;">
+        <th>
+            &nbsp;
+        </th>
+        <th>
+            ID
+        </th>
+        <th>
+            OriginalImage
+        </th>
+        <th>
+            CropImage
+        </th>
+        <th>
+            Selection
+        </th>
+        <th>
+            CreateDate
+        </th>
+        <th>
+            UpdateDate
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="tr-@item.ID">
+            <td style="text-align: center;">
+                @Html.ActionLink("Crop", "Crop", new { id = item.ID }, new { @class = "various fancybox.iframe" }) | 
+                <a id="@item.ID" class="DeleteLink" style="cursor: pointer; color: Blue; text-decoration: underline;">Delete</a>
+            </td>
+            <td style="text-align: center;">
+                @item.ID
+            </td>
+            <td>
+                <a class="fancybox default" href="@string.Concat("/FileUpload/Original/", @item.OriginalImage)">
+                    <img src="@string.Concat("/FileUpload/Original/", @item.OriginalImage)" height="200" border="0" />
+                </a>
+                <br />
+                @item.OriginalImage 
+            </td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(@item.CropImage))
+                {
+                    <img src="@string.Concat("/FileUpload/Crop/", @item.CropImage)" /><br />
+                    @item.CropImage
+                }
+            </td>
+            <td>
+                X1: @item.SelectionX1 <br />
+                X2: @item.SelectionX2 <br />
+                Y1: @item.SelectionY1 <br />
+                Y2: @item.SelectionY2
+            </td>
+            <td style="text-align: center;">
+                @String.Format("{0:g}", item.CreateDate)
+            </td>
+            <td style="text-align: center;">
+                @String.Format("{0:g}", item.UpdateDate)
+            </td>
+        </tr>
+    }
+</table>
+
+@section JavaScriptContent
+{
+    @if (false) { <script type="text/javascript" src="~/Scripts/jquery-1.7.2.min.js"></script> }
+
+    <script type="text/javascript" language="javascript">
+	<!--
+        $(document).ready(function ()
+        {
+            $('#HyperLink_Reload').click(function () { window.location.reload(); });
+
+            $('.DeleteLink').click(function ()
+            {
+                ShowDeleteConfirm($(this).attr('id'));
+            });
+
+            $(".default").fancybox({
+                autoSize: true,
+                openEffect: 'elastic',
+                closeEffect: 'elastic'
+            });
+            $(".various").fancybox({
+                maxWidth: 1600,
+                maxHeight: 1000,
+                fitToView: false,
+                width: '95%',
+                height: '95%',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'none',
+                closeEffect: 'none'
+            });
+
+        });
+
+        function ShowDeleteConfirm(idValue)
+        {
+            if (confirm('你確定要刪除這筆資料嗎？'))
+            {
+                $.ajax(
+                {
+                    type: 'post',
+                    url: '@Url.Action("Delete", "Home")',
+                    data: { id: idValue },
+                    dataType: 'json',
+                    async: false,
+                    cache: false,
+                    success: function (data)
+                    {
+                        if (data)
+                        {
+                            if (data.result != 'OK')
+                            {
+                                alert(data.result);
+                                window.location.href = '/Home/Index';
+                            }
+                            else
+                            {
+                                $('#tr-' + idValue).remove();
+                            }
+                        }
+                        return false;
+                    }
+                });
+            }
+        }
+	-->
+    </script>
+}

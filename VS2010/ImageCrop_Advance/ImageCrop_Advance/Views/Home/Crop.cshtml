@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Crop";
+}
+@section HeadCss
+{
+	<link href="@Url.Content("~/Content/ImageAreaSelect/imgareaselect-default.css")" rel="stylesheet" type="text/css" />
+}
+
+<div style="width: 100%; text-align: right;">
+    <input type="button" id="ButtonClose" value="Close the Window" />
+</div>
+<hr/>
+
+<h2>Crop Image</h2>
+
+<input type="hidden" id="ErrorMessage" value="@ViewData["ErrorMessage"].ToString()" />
+<input type="hidden" id="UploadImage_ID" value="@ViewData["UploadImage_ID"].ToString()" />
+<input type="hidden" id="OriginalImage" value="@ViewData["OriginalImage"].ToString()" />
+<input type="hidden" id="CropImape" value="@ViewData["CropImape"].ToString()" />
+
+<input type="button" id="ButtonCrop" value="Save the Crop Image" />
+<div align="center" style="padding-top: 10px;">
+	<img id="Image1" style="float: left; margin-right: 10px;" alt="Create Thumbnail" />
+	<div style="float: left; position: relative; overflow: hidden; width: @(ViewBag.CropWidth)px; height: @(ViewBag.CropHeight)px;">
+		<img id="Image2" style="position: relative;" alt="Thumbnail Preview" />
+	</div>
+</div>
+<input type="hidden" id="x1" name="x1" value="@ViewData["SelectionX1"]" runat="server" />
+<input type="Hidden" id="x2" name="x2" value="@ViewData["SelectionX2"]" runat="server" />
+<input type="hidden" id="y1" name="y1" value="@ViewData["SelectionY1"]" runat="server" />
+<input type="hidden" id="y2" name="y2" value="@ViewData["SelectionY2"]" runat="server" />
+
+@section JavaScriptContent
+{
+	@if(false) { <script src="../../Scripts/jquery-1.7.2.min.js" type="text/javascript"></script> }
+
+	<script src="../../Scripts/jquery.imgareaselect.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	<!--
+	    $(document).ready(function ()
+	    {
+	        $('#ButtonClose').click(function () { window.top.location.reload(); });
+	        $('#ButtonCrop').click(function () { SaveCropEventHandler(); });
+
+            Page_Initial();
+	    });
+
+	    function Page_Initial()
+	    {
+	        var errorMessage = $.trim($('#ErrorMessage').val());
+
+	        if (errorMessage.length > 0)
+	        {
+	            alert(errorMessage);
+	            window.location.href = "/Home/Index";
+	        }
+	        else
+	        {
+	            var imageID = $.trim($('#UploadImage_ID').val());
+	            var originalImage = $.trim($('#OriginalImage').val());
+	            var cropImape = $.trim($('#CropImape').val());
+
+	            if (imageID.length > 0 && originalImage.length > 0)
+	            {
+	                $('img#Image1').attr('src', originalImage);
+	                $('img#Image2').attr('src', originalImage);
+	            }
+	        }
+
+	        $('img#Image1').imgAreaSelect(
+			{
+			    handles: 'corners',
+			    aspectRatio: '1:1',
+			    minHeight: @(ViewBag.CropWidth),
+			    minWidth: @(ViewBag.CropHeight),
+			    x1: parseInt($.trim($('#x1').val()), 10),
+			    y1: parseInt($.trim($('#y1').val()), 10),
+			    x2: parseInt($.trim($('#x2').val()), 10),
+			    y2: parseInt($.trim($('#y2').val()), 10),
+			    onInit: preview,
+			    onSelectChange: preview
+			});
+
+	        return false;
+	    }
+
+	    function preview(img, selection)
+	    {
+	        var scaleX = @(ViewBag.CropWidth) / selection.width;
+	        var scaleY = @(ViewBag.CropHeight) / selection.height;
+
+	        var img = new Image();
+	        img.src = $('#Image1').attr('src');
+	        var pic_real_width = img.width;
+	        var pic_real_height = img.height;
+
+	        $('#Image1 + div > img').css(
+            {
+	            width: Math.round(scaleX * pic_real_width) + 'px',
+	            height: Math.round(scaleY * pic_real_height) + 'px',
+	            marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+	            marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+	        });
+
+	        $('input[name="x1"]').val(selection.x1);
+	        $('input[name="y1"]').val(selection.y1);
+	        $('input[name="x2"]').val(selection.x2);
+	        $('input[name="y2"]').val(selection.y2);
+	    }
+
+	    function SaveCropEventHandler()
+	    {
+	        var x1 = $('input[name="x1"]').val();
+	        var x2 = $('input[name="x2"]').val();
+	        var y1 = $('input[name="y1"]').val();
+	        var y2 = $('input[name="y2"]').val();
+
+	        if (x1.length == 0 && x2.length == 0 && y1.length == 0 && y2.length == 0)
+	        {
+	            alert('請選擇裁剪區域');
+	            return false;
+	        }
+	        else
+	        {
+	            $.ajax({
+	                type: 'post',
+	                url: '@Url.Action("CropImage", "Home")',
+	                data: { id: $('#UploadImage_ID').val(), x1: x1, x2: x2, y1: y1, y2: y2 },
+	                dataType: 'json',
+	                async: false,
+	                cache: false,
+	                success: function (result)
+	                {
+	                    if (result)
+	                    {
+	                        if (result.result != 'OK')
+	                        {
+	                            alert(result.msg);
+	                            window.location.href = '@Url.Action("Crop", "Home")' + '?id=' + $('#UploadImage_ID').val();
+	                        }
+	                        else
+	                        {
+                                if(confirm('裁剪完成! 是否關閉裁剪功能視窗?'))
+                                {
+                                    $('#ButtonClose').trigger('click');
+                                }
+	                        }
+	                        return false;
+	                    }
+	                }
+	            });
+	        }
+	    }
+	-->
+	</script>
+}

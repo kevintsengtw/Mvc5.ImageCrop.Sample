@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "UploadFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    string uploadResult = TempData["Upload_Result"] == null ? string.Empty : TempData["Upload_Result"].ToString();
+    string uploadMessage = TempData["Upload_Msg"] == null ? string.Empty : TempData["Upload_Msg"].ToString();
+    
+    bool panelVisible = !string.IsNullOrWhiteSpace(uploadResult) && !string.IsNullOrWhiteSpace(uploadMessage);
+    string displayContent = panelVisible ? "" : "none;";
+}
+
+<div style="width: 100%; text-align: right;">
+    <input type="button" id="ButtonClose" value="Close the Window" />
+</div>
+<hr>
+<h2>Upload Image File</h2>
+
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { id = "FormUpload", enctype = "multipart/form-data" }))
+{
+    <p>
+        Upload File：<input type="file" id="uploadFile" name="uploadFile" size="23" />
+        <input type="button" id="ButtonUpload" value="Upload file" />
+    </p>
+}
+
+<div id="PanelUploadImage" style="display:@displayContent; background-color: #eeeeee; width: 100%; height: 100%;">
+    @if (uploadResult.Equals("Success", StringComparison.OrdinalIgnoreCase))
+    {
+        <input type="button" id="ButtonSave" value="Save Image File" /> 
+        <input type="button" id="ButtonCancel" value="Cancel Save" /> 
+        <input type="button" id="ButtonCrop" value="Crop Image" />
+        <input type="hidden" id="HiddenFileName" value="@uploadMessage" />
+        <input type="hidden" id="Hidden_UploadImageID" value="" />
+        <br />
+        <img id="UploadImage" src="/FileUpload/Temp/@(uploadMessage)" />
+    }
+    else
+    {
+        @uploadMessage
+    }
+</div>
+
+@section JavaScriptContent
+{
+    @if (false) { <script type="text/javascript" src="~/Scripts/jquery-1.7.2.min.js"></script> }
+
+    <script type="text/javascript">
+	<!--
+        $(document).ready(function ()
+        {
+            $('#ButtonClose').click(function () { window.top.location.reload(); });
+            $('#ButtonUpload').click(function () { UploadEventHandler(); });
+
+            Page_Init();
+        });
+
+        function Page_Init()
+        {
+            $('#ButtonCrop').hide();
+            $('#ButtonCrop').click(function () { CropEnevtHandler(); });
+            $('#ButtonSave').click(function () { SaveEventHandler(); });
+            $('#ButtonCancel').click(function () { CancelEventHandler(); });
+        }
+
+        function UploadEventHandler()
+        {
+            var uploadFile = $('#uploadFile').val();
+            if (uploadFile.length == 0)
+            {
+                alert('請選擇上傳的檔案');
+                return false;
+            }
+            else
+            {
+                $('#FormUpload').submit();
+            }
+        }
+
+        function SaveEventHandler()
+        {
+            $.ajax(
+            {
+                url: '@Url.Action("Save", "Home")',
+                type: 'post',
+                data: { fileName: $('#HiddenFileName').val() },
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function (result)
+                {
+                    if (result)
+                    {
+                        if (result.result = "Success")
+                        {
+                            $('#ButtonSave').hide();
+                            $('#ButtonCancel').hide();
+
+                            $('#ButtonCrop').show();
+                            $('#UploadImage').attr('src', result.msg);
+                            $('#Hidden_UploadImageID').val(result.id);
+                        }
+                        else
+                        {
+                            $('#ButtonCrop').hide();
+                            $('#PanelUploadImage').hide();
+                            $('#HiddenFileName').empty();
+                            $('#UploadImage').attr('src', '');
+                            alert(result.msg);
+                        }
+                    }
+                    return false;
+                }
+            });
+        }
+
+        function CancelEventHandler()
+        {
+            $.ajax(
+            {
+                url: '@Url.Action("Cancel", "Home")',
+                type: 'post',
+                data: { fileName: $('#HiddenFileName').val() },
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function (data)
+                {
+                    if (data)
+                    {
+                        if (data.result != 'Success')
+                        {
+                            alert(data.msg);
+                        }
+                        $('#PanelUploadImage').hide();
+                        $('#ButtonCrop').hide();
+                        $('#HiddenFileName').empty();
+                        $('#UploadImage').attr('src', '');
+                        $('#UploadImage').attr('width', '');
+                        $('#UploadImage').attr('height', '');
+                    }
+                    return false;
+                }
+            });
+        }
+
+        function CropEnevtHandler()
+        {
+            var imageID = $.trim($('#Hidden_UploadImageID').val());
+
+            if (imageID.length == 0)
+            {
+                alert('沒有資料ID編號');
+            }
+            else
+            {
+                window.location.href = '@Url.Action("Crop", "Home")' + '?id=' + imageID;
+            }
+            return false;
+        }
+	-->
+    </script>
+}

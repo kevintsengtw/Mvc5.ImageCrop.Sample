@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ImageCropModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ImageCropModelStoreContainer">
+          <EntitySet Name="UploadImage" EntityType="ImageCropModel.Store.UploadImage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UploadImage2" EntityType="ImageCropModel.Store.UploadImage2" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="UploadImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OriginalImage" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CropImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UploadImage2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OriginalImage" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CropImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="SelectionX1" Type="int" />
+          <Property Name="SelectionX2" Type="int" />
+          <Property Name="SelectionY1" Type="int" />
+          <Property Name="SelectionY2" Type="int" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ImageCropModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ImageCropEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UploadImage" EntityType="ImageCropModel.UploadImage" />
+          <EntitySet Name="UploadImage2" EntityType="ImageCropModel.UploadImage2" />
+        </EntityContainer>
+        <EntityType Name="UploadImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="OriginalImage" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CropImage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="UploadImage2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="OriginalImage" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CropImage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SelectionX1" Type="Int32" />
+          <Property Name="SelectionX2" Type="Int32" />
+          <Property Name="SelectionY1" Type="Int32" />
+          <Property Name="SelectionY2" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ImageCropModelStoreContainer" CdmEntityContainer="ImageCropEntities">
+          <EntitySetMapping Name="UploadImage"><EntityTypeMapping TypeName="ImageCropModel.UploadImage"><MappingFragment StoreEntitySet="UploadImage">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="OriginalImage" ColumnName="OriginalImage" />
+            <ScalarProperty Name="CropImage" ColumnName="CropImage" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UploadImage2"><EntityTypeMapping TypeName="ImageCropModel.UploadImage2"><MappingFragment StoreEntitySet="UploadImage2">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="OriginalImage" ColumnName="OriginalImage" />
+            <ScalarProperty Name="CropImage" ColumnName="CropImage" />
+            <ScalarProperty Name="SelectionX1" ColumnName="SelectionX1" />
+            <ScalarProperty Name="SelectionX2" ColumnName="SelectionX2" />
+            <ScalarProperty Name="SelectionY1" ColumnName="SelectionY1" />
+            <ScalarProperty Name="SelectionY2" ColumnName="SelectionY2" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Models">
+        <EntityTypeShape EntityType="ImageCropModel.UploadImage" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImageCropModel.UploadImage2" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

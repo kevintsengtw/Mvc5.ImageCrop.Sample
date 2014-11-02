@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop_Advance", "ImageCrop_Advance\ImageCrop_Advance.csproj", "{7D0050C1-711F-4FEF-8FA9-41B6674515C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop", "ImageCrop\ImageCrop.csproj", "{742D8186-5A41-4CA3-94B6-7547002307A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.Models", "ImageCrop.Models\ImageCrop.Models.csproj", "{928E8EF6-69A7-40A1-968E-1A11A560EB63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D0050C1-711F-4FEF-8FA9-41B6674515C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D0050C1-711F-4FEF-8FA9-41B6674515C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D0050C1-711F-4FEF-8FA9-41B6674515C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D0050C1-711F-4FEF-8FA9-41B6674515C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742D8186-5A41-4CA3-94B6-7547002307A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742D8186-5A41-4CA3-94B6-7547002307A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742D8186-5A41-4CA3-94B6-7547002307A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742D8186-5A41-4CA3-94B6-7547002307A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{928E8EF6-69A7-40A1-968E-1A11A560EB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928E8EF6-69A7-40A1-968E-1A11A560EB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928E8EF6-69A7-40A1-968E-1A11A560EB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928E8EF6-69A7-40A1-968E-1A11A560EB63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

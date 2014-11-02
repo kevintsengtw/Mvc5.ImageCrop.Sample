@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/fancybox/jquery.fancybox.css?v=2.0.6")" rel="stylesheet" type="text/css" />
+    @RenderSection("HeadCss", required: false)
+</head>
+
+<body>
+    @RenderBody()
+
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/fancybox/jquery.fancybox.pack.js?v=2.0.6")"></script>
+	@RenderSection("JavaScriptContent", required: false)
+</body>
+</html>

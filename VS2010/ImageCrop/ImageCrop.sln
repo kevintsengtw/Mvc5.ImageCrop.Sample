@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.Models", "ImageCrop.Models\ImageCrop.Models.csproj", "{9E17032C-774B-4E8C-8EE0-E85431158338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.MVC", "ImageCrop.MVC\ImageCrop.MVC.csproj", "{5A719A58-E57B-4DCA-BC3A-D0ED1EE8F886}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.WebForm", "ImageCrop.WebForm\ImageCrop.WebForm.csproj", "{FCB292D4-A864-4079-BFEB-C52A747DAA8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop", "ImageCrop\ImageCrop.csproj", "{A8F9B4B0-82CC-4CC8-94C2-BFB7B9265B95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E17032C-774B-4E8C-8EE0-E85431158338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E17032C-774B-4E8C-8EE0-E85431158338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E17032C-774B-4E8C-8EE0-E85431158338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E17032C-774B-4E8C-8EE0-E85431158338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A719A58-E57B-4DCA-BC3A-D0ED1EE8F886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A719A58-E57B-4DCA-BC3A-D0ED1EE8F886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A719A58-E57B-4DCA-BC3A-D0ED1EE8F886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A719A58-E57B-4DCA-BC3A-D0ED1EE8F886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB292D4-A864-4079-BFEB-C52A747DAA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB292D4-A864-4079-BFEB-C52A747DAA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB292D4-A864-4079-BFEB-C52A747DAA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB292D4-A864-4079-BFEB-C52A747DAA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F9B4B0-82CC-4CC8-94C2-BFB7B9265B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F9B4B0-82CC-4CC8-94C2-BFB7B9265B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F9B4B0-82CC-4CC8-94C2-BFB7B9265B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F9B4B0-82CC-4CC8-94C2-BFB7B9265B95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
