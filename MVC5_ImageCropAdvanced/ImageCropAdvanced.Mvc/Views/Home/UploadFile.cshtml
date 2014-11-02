@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "UploadFile";
+    Layout = "~/Views/Shared/_Layout.fancybox.cshtml";
+}
+
+@{
+    var uploadResult = TempData["Upload_Result"] == null
+        ? string.Empty
+        : TempData["Upload_Result"].ToString();
+
+    var uploadMessage = TempData["Upload_Msg"] == null
+        ? string.Empty
+        : TempData["Upload_Msg"].ToString();
+
+    var panelVisible = !string.IsNullOrWhiteSpace(uploadResult)
+                       &&
+                       !string.IsNullOrWhiteSpace(uploadMessage);
+
+    var displayContent = panelVisible ? "" : "none;";
+}
+
+<h2>Upload Image File</h2>
+<hr />
+@using (Html.BeginForm("UploadFile", "Home",
+    FormMethod.Post,
+    new { id = "FormUpload", enctype = "multipart/form-data", role = "form" }))
+{
+    <div class="row">
+        <div class="col-md-2 col-md-offset-0">
+            <input type="file" class="filestyle" data-buttontext="選擇圖檔" id="uploadFile" name="uploadFile">
+        </div>
+        <div class="col-md-4">
+            <input type="button" class="btn btn-success" id="ButtonUpload" value="Upload" />
+            <input type="button" class="btn btn-primary" id="ButtonClose" value="Close the Window" />
+        </div>
+    </div>
+}
+<br />
+<div id="PanelUploadImage" style="display:@displayContent; width: 100%; height: 100%;">
+    @if (uploadResult.Equals("Success", StringComparison.OrdinalIgnoreCase))
+    {
+        <input type="button" class="btn btn-info" id="ButtonSave" value="Save Image File" />
+        <input type="button" class="btn btn-default" id="ButtonCancel" value="Cancel Save" />
+        <input type="button" class="btn btn-warning" id="ButtonCrop" value="Crop Image" />
+        <input type="hidden" id="HiddenFileName" value="@uploadMessage" />
+        <input type="hidden" id="Hidden_UploadImageID" value="" />
+        <div style="padding: 10px"></div>
+        <img id="UploadImage" src="/FileUpload/Temp/@(uploadMessage)" />
+    }
+    else
+    {
+        @uploadMessage
+    }
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/project/Project.js"></script>
+    <script src="~/Scripts/project/ImageCrop.UploadFile.js"></script>
+    <script src="~/Scripts/bootstrap-filestyle.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            project.UploadFile.Init();
+        });
+    </script>
+}

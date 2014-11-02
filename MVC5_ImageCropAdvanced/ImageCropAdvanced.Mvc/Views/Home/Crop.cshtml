@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Crop";
+    Layout = "~/Views/Shared/_Layout.fancybox.cshtml";
+}
+@section styles
+{
+    <link href="~/Content/ImageAreaSelect/imgareaselect-default.css" rel="stylesheet" />
+}
+<h2>Crop Image</h2>
+<div class="row">
+    <div class="col-md-12">
+        <input type="button" class="btn btn-primary" id="ButtonClose" value="Close the Window" />
+        <input type="button" class="btn btn-success" id="ButtonCrop" value="Save the Crop Image" />
+        <input type="hidden" id="ErrorMessage" value="@ViewData["ErrorMessage"].ToString()" />
+        <input type="hidden" id="UploadImage_ID" value="@ViewData["UploadImage_ID"].ToString()" />
+        <input type="hidden" id="OriginalImage" value="@ViewData["OriginalImage"].ToString()" />
+        <input type="hidden" id="CropImape" value="@ViewData["CropImape"].ToString()" />
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div align="center" style="padding-top: 10px;">
+            <img id="Image1" style="float: left; margin-right: 10px;" alt="Create Thumbnail" />
+            <div style="float: left; position: relative; overflow: hidden; width: @(ViewBag.CropWidth)px; height: @(ViewBag.CropHeight)px;">
+                <img id="Image2" style="position: relative;" alt="Thumbnail Preview" />
+            </div>
+        </div>
+        <input type="hidden" id="x1" name="x1" value="@ViewData["SelectionX1"]" runat="server" />
+        <input type="Hidden" id="x2" name="x2" value="@ViewData["SelectionX2"]" runat="server" />
+        <input type="hidden" id="y1" name="y1" value="@ViewData["SelectionY1"]" runat="server" />
+        <input type="hidden" id="y2" name="y2" value="@ViewData["SelectionY2"]" runat="server" />
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script src="~/Scripts/project/Project.js"></script>
+    <script src="~/Scripts/project/ImageCrop.Crop.js"></script>>
+    <script src="../../Scripts/jquery.imgareaselect.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            project.Crop.Init(@(ViewBag.CropWidth), @(ViewBag.CropHeight));
+        });
+    </script>
+}

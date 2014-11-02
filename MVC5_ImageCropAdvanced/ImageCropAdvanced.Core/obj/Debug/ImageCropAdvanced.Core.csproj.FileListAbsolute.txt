@@ -1,0 +1,4 @@
+Z:\Temp\xyz\MVC5_ImageCropAdvanced\ImageCropAdvanced.Core\bin\Debug\ImageCropAdvanced.Core.dll
+Z:\Temp\xyz\MVC5_ImageCropAdvanced\ImageCropAdvanced.Core\bin\Debug\ImageCropAdvanced.Core.pdb
+Z:\Temp\xyz\MVC5_ImageCropAdvanced\ImageCropAdvanced.Core\obj\Debug\ImageCropAdvanced.Core.dll
+Z:\Temp\xyz\MVC5_ImageCropAdvanced\ImageCropAdvanced.Core\obj\Debug\ImageCropAdvanced.Core.pdb

@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>ASP.NET MVC 5 + jQuery imgAreaSelect + fancyBox</h2><hr />
+<p>
+    <a id="HyperLink_Reload" class="btn btn-primary">Reload</a>
+    @Html.ActionLink("Upload File", "UploadFile", "Home", new { @class = "btn btn-success various fancybox.iframe" })
+</p>
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <tr style="background-color: #eeeeee; height: 30px;">
+        <th>
+            ID
+        </th>
+        <th>
+            OriginalImage
+        </th>
+        <th>
+            CropImage
+        </th>
+        <th>
+            Selection
+        </th>
+        <th>
+            CreateDate
+        </th>
+        <th>
+            UpdateDate
+        </th>
+        <th>
+            &nbsp;
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="tr-@item.ID">
+            <td style="text-align: center;">
+                @item.ID
+            </td>
+            <td>
+                <a class="fancybox default" href="@string.Concat("/FileUpload/Original/", @item.OriginalImage)">
+                    <img src="@string.Concat("/FileUpload/Original/", @item.OriginalImage)" height="200" border="0" />
+                </a>
+                <br />
+                @item.OriginalImage
+            </td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(@item.CropImage))
+                {
+                    <a class="fancybox default" href="@string.Concat("/FileUpload/Crop/", @item.CropImage)">
+                        <img src="@string.Concat("/FileUpload/Crop/", @item.CropImage)" />
+                    </a>
+                    <br />
+                    @item.CropImage
+                }
+            </td>
+            <td>
+                X1: @item.SelectionX1 <br />
+                X2: @item.SelectionX2 <br />
+                Y1: @item.SelectionY1 <br />
+                Y2: @item.SelectionY2
+            </td>
+            <td style="text-align: center;">
+                @String.Format("{0:g}", item.CreateDate)
+            </td>
+            <td style="text-align: center;">
+                @String.Format("{0:g}", item.UpdateDate)
+            </td>
+            <td style="text-align: center;">
+                <div class="dropdown">
+                    <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-warning" data-target="#">
+                        操作 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                        <li>
+                            <a class="various fancybox.iframe" href="@Url.Action("Crop", "Home", new { id = item.ID })">Crop</a>
+                        </li>
+                        <li>
+                            <a id="@item.ID" class="DeleteLink">Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+@section scripts
+{
+    <script src="~/Scripts/project/Project.js"></script>
+    <script src="~/Scripts/project/ImageCrop.Index.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            project.Index.Init();
+        });
+    </script>
+}
