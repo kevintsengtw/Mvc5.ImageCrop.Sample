@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.Common", "ImageCrop.Common\ImageCrop.Common.csproj", "{C176545E-7EC2-433C-89E6-F07848949088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.MVC", "ImageCrop.MVC\ImageCrop.MVC.csproj", "{CC458D74-EB0E-492B-B5A2-763E3DB159D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D18C166B-B8FD-4625-9999-AAA539540560}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageCrop.WebForm", "ImageCrop.WebForm\ImageCrop.WebForm.csproj", "{55326A2D-F001-4887-99B7-0DB9ED52972D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C176545E-7EC2-433C-89E6-F07848949088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C176545E-7EC2-433C-89E6-F07848949088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C176545E-7EC2-433C-89E6-F07848949088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C176545E-7EC2-433C-89E6-F07848949088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC458D74-EB0E-492B-B5A2-763E3DB159D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC458D74-EB0E-492B-B5A2-763E3DB159D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC458D74-EB0E-492B-B5A2-763E3DB159D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC458D74-EB0E-492B-B5A2-763E3DB159D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55326A2D-F001-4887-99B7-0DB9ED52972D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55326A2D-F001-4887-99B7-0DB9ED52972D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55326A2D-F001-4887-99B7-0DB9ED52972D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55326A2D-F001-4887-99B7-0DB9ED52972D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+Z:\Temp\xyz\MVC5_ImageCrop\ImageCrop.Common\bin\Debug\ImageCrop.Common.dll
+Z:\Temp\xyz\MVC5_ImageCrop\ImageCrop.Common\bin\Debug\ImageCrop.Common.pdb
+Z:\Temp\xyz\MVC5_ImageCrop\ImageCrop.Common\obj\Debug\ImageCrop.Common.dll
+Z:\Temp\xyz\MVC5_ImageCrop\ImageCrop.Common\obj\Debug\ImageCrop.Common.pdb
+Z:\Temp\xyz\MVC5_ImageCrop\ImageCrop.Common\obj\Debug\ImageCrop.Common.csprojResolveAssemblyReference.cache
